@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyHelper AI — Your Study Sidekick</title>
+  <meta name="description" content="An AI-powered study planner, quiz generator, and tutor chat built for students who'd rather not have an existential crisis before finals.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">🧠 StudyHelper<span class="logo-accent">AI</span></a>
+      <nav class="nav-links">
+        <a href="#planner">Study Planner</a>
+        <a href="#quiz">Quiz Generator</a>
+        <a href="#chat">Ask StudyHelper</a>
+        <a href="#about">About</a>
+      </nav>
+      <button class="nav-cta" onclick="document.getElementById('planner').scrollIntoView({behavior:'smooth'})">Try It Now</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-badge">🏆 STEM Innovation Challenge 2026 Submission</span>
+      <h1>Your homework called.<br>It wants an <span class="highlight">upgrade.</span></h1>
+      <p class="hero-subtitle">
+        StudyHelper AI plans your study schedule, turns your messy notes into practice quizzes,
+        and answers your "wait what does this even mean" questions at 11pm.
+        Basically the study buddy who never gets tired, never judges you, and never eats the last slice of pizza.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="document.getElementById('planner').scrollIntoView({behavior:'smooth'})">Build My Study Plan</button>
+        <button class="btn-secondary" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">How It Works</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES OVERVIEW -->
+  <section class="features" id="about">
+    <h2>Three Tools. One Slightly-Too-Smart Sidekick.</h2>
+    <p class="section-subtitle">No cap, this actually works — built for the AI &amp; Automation for a Better Future track.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <h3>Smart Study Planner</h3>
+        <p>Tell it your subjects and deadlines. It builds a realistic day-by-day plan so you're not relearning an entire semester at 2am.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3>Notes → Quiz Generator</h3>
+        <p>Paste your notes, get an instant practice quiz. Like a pop quiz, except you saw it coming and it's actually trying to help you.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💬</div>
+        <h3>AI Tutor Chat</h3>
+        <p>Ask it anything about your subject. It explains things without the passive-aggressive sigh your group chat gives you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDY PLANNER TOOL -->
+  <section class="tool-section" id="planner">
+    <div class="tool-header">
+      <h2>📅 Smart Study Planner</h2>
+      <p>Add your subjects, tell it how many days you've got, and let the AI do the panicking for you.</p>
+    </div>
+    <div class="tool-card">
+      <div class="planner-inputs" id="subjectInputs">
+        <div class="subject-row">
+          <input type="text" class="subject-name" placeholder="Subject (e.g. Chemistry)">
+          <input type="date" class="subject-deadline">
+          <select class="subject-difficulty">
+            <option value="easy">Easy mode</option>
+            <option value="medium" selected>Medium mode</option>
+            <option value="hard">Boss battle</option>
+          </select>
+        </div>
+      </div>
+      <button class="btn-outline" id="addSubjectBtn">+ Add Another Subject</button>
+      <div class="planner-hours">
+        <label for="dailyHours">How many hours a day can you realistically study? (be honest)</label>
+        <input type="range" id="dailyHours" min="1" max="8" value="2">
+        <span id="dailyHoursValue">2 hours</span>
+      </div>
+      <button class="btn-primary btn-full" id="generatePlanBtn">Generate My Study Plan ✨</button>
+      <div class="loading-indicator" id="plannerLoading" hidden>
+        <div class="spinner"></div>
+        <p>StudyHelper is doing the math so you don't have to...</p>
+      </div>
+      <div class="result-box" id="plannerResult" hidden></div>
+    </div>
+  </section>
+
+  <!-- QUIZ GENERATOR TOOL -->
+  <section class="tool-section alt-bg" id="quiz">
+    <div class="tool-header">
+      <h2>📝 Notes → Quiz Generator</h2>
+      <p>Paste your notes below. StudyHelper turns them into a quiz so you can test yourself before your teacher does it for you.</p>
+    </div>
+    <div class="tool-card">
+      <textarea id="notesInput" class="notes-textarea" placeholder="Paste your class notes here... the messier the better, we've seen worse."></textarea>
+      <div class="quiz-options">
+        <label for="questionCount">Number of questions:</label>
+        <select id="questionCount">
+          <option value="3">3 (quick check)</option>
+          <option value="5" selected>5 (standard)</option>
+          <option value="8">8 (go big or go home)</option>
+        </select>
+      </div>
+      <button class="btn-primary btn-full" id="generateQuizBtn">Generate Quiz 🎯</button>
+      <div class="loading-indicator" id="quizLoading" hidden>
+        <div class="spinner"></div>
+        <p>Reading your notes and judging them lovingly...</p>
+      </div>
+      <div class="result-box" id="quizResult" hidden></div>
+    </div>
+  </section>
+
+  <!-- AI CHAT TOOL -->
+  <section class="tool-section" id="chat">
+    <div class="tool-header">
+      <h2>💬 Ask StudyHelper</h2>
+      <p>Stuck on a concept? Ask away. No judgment, no "you should already know this."</p>
+    </div>
+    <div class="tool-card chat-card">
+      <div class="chat-window" id="chatWindow">
+        <div class="chat-message bot">
+          <span class="chat-avatar">🧠</span>
+          <div class="chat-bubble">Hey! I'm StudyHelper. Ask me to explain literally anything — photosynthesis, the Cold War, why your code won't run, whatever's stressing you out right now.</div>
+        </div>
+      </div>
+      <div class="chat-input-row">
+        <input type="text" id="chatInput" placeholder="Type your question here...">
+        <button class="btn-primary" id="chatSendBtn">Send</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p>Built with too much caffeine and questionable sleep schedules for the STEM Innovation Challenge 2026.</p>
+    <p class="footer-small">StudyHelper AI is not responsible for actual grade improvements, but it will try its absolute best.</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
